@@ -1,5 +1,5 @@
 import { Percent } from '@uniswap/sdk-core'
-import { RouterPreference, Slippage, SwapController, SwapEventHandlers } from '@uniswap/widgets'
+import { Slippage, SwapController, SwapEventHandlers } from '@uniswap/widgets'
 import { DEFAULT_DEADLINE_FROM_NOW } from 'constants/misc'
 import { useCallback, useMemo, useState } from 'react'
 import { useUserSlippageTolerance, useUserTransactionTTL } from 'state/user/hooks'
@@ -37,8 +37,6 @@ export function useSyncWidgetSettings() {
     [setAppSlippage]
   )
 
-  const [routerPreference, onRouterPreferenceChange] = useState(RouterPreference.API)
-
   const onSettingsReset = useCallback(() => {
     setWidgetTtl(undefined)
     setAppTtl(DEFAULT_DEADLINE_FROM_NOW)
@@ -48,15 +46,11 @@ export function useSyncWidgetSettings() {
 
   const settings: SwapController['settings'] = useMemo(() => {
     const auto = appSlippage === 'auto'
-    return {
-      slippage: { auto, max: widgetSlippage },
-      transactionTtl: widgetTtl,
-      routerPreference,
-    }
-  }, [appSlippage, widgetSlippage, widgetTtl, routerPreference])
+    return { slippage: { auto, max: widgetSlippage }, transactionTtl: widgetTtl }
+  }, [widgetSlippage, widgetTtl, appSlippage])
   const settingsHandlers: SwapEventHandlers = useMemo(
-    () => ({ onSettingsReset, onSlippageChange, onTransactionDeadlineChange, onRouterPreferenceChange }),
-    [onSettingsReset, onSlippageChange, onTransactionDeadlineChange, onRouterPreferenceChange]
+    () => ({ onSettingsReset, onSlippageChange, onTransactionDeadlineChange }),
+    [onSettingsReset, onSlippageChange, onTransactionDeadlineChange]
   )
 
   return { settings: { settings, ...settingsHandlers } }
