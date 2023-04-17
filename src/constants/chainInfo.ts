@@ -11,12 +11,13 @@ import optimismSquareLogoUrl from 'assets/svg/optimism_square_logo.svg'
 import optimismLogoUrl from 'assets/svg/optimistic_ethereum.svg'
 import polygonSquareLogoUrl from 'assets/svg/polygon_square_logo.svg'
 import polygonMaticLogo from 'assets/svg/polygon-matic-logo.svg'
+import scrollLogo from 'assets/svg/scroll_logo.svg'
 import { SupportedChainId } from 'constants/chains'
 import ms from 'ms.macro'
 import { darkTheme } from 'theme/colors'
 
 import { SupportedL1ChainId, SupportedL2ChainId } from './chains'
-import { ARBITRUM_LIST, CELO_LIST, OPTIMISM_LIST, PLASMA_BNB_LIST } from './lists'
+import { ARBITRUM_LIST, CELO_LIST, OPTIMISM_LIST, PLASMA_BNB_LIST, SCROLL_ALPHA_LIST } from './lists'
 
 export const AVERAGE_L1_BLOCK_TIME = ms`12s`
 
@@ -197,6 +198,23 @@ const CHAIN_INFO: ChainInfoMap = {
     logoUrl: celoLogo,
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
     defaultListUrl: CELO_LIST,
+  },
+  [SupportedChainId.SCROLL_ALPHA]: {
+    networkType: NetworkType.L2,
+    docs: 'https://docs.uniswap.org/',
+    explorer: 'https://blockscout.scroll.io/',
+    infoLink: 'https://info.uniswap.org/#/',
+    label: 'Scroll Alpha',
+    logoUrl: scrollLogo,
+    nativeCurrency: { name: 'Scroll Alpha Ether', symbol: 'ETH', decimals: 18 },
+    //TODO: Add Scroll Brand Color
+    color: darkTheme.chain_5,
+
+    // Required for L2 networks
+    blockWaitMsBeforeWarning: ms`10m`,
+    bridge: 'https://scroll.io/alpha/bridge/',
+    defaultListUrl: SCROLL_ALPHA_LIST,
+    helpCenterUrl: 'https://help.uniswap.org/en/collections/3137787-uniswap-on-arbitrum',
   },
   [SupportedChainId.BNB]: {
     networkType: NetworkType.L1,

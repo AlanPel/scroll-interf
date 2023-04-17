@@ -67,6 +67,13 @@ const USDC_POLYGON_MUMBAI = new Token(
   'USDC',
   'USD//C'
 )
+const USDC_SCROLL_ALPHA = new Token(
+  SupportedChainId.SCROLL_ALPHA,
+  '0x38BA9a208F34Ddc9332f6DfC0E9d567f098958A4',
+  6,
+  'USDC',
+  'USD//C'
+)
 export const PORTAL_USDC_CELO = new Token(
   SupportedChainId.CELO,
   '0x37f750B7cC259A2f741AF45294f6a16572CF5cAd',
@@ -417,6 +424,13 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
     'CELO',
     'Celo native asset'
   ),
+  [SupportedChainId.SCROLL_ALPHA]: new Token(
+    SupportedChainId.SCROLL_ALPHA,
+    '0xa1EA0B2354F5A344110af2b6AD68e75545009a03',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [SupportedChainId.BNB]: new Token(
     SupportedChainId.BNB,
     '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
@@ -429,6 +443,11 @@ export const WRAPPED_NATIVE_CURRENCY: { [chainId: number]: Token | undefined } =
 export function isCelo(chainId: number): chainId is SupportedChainId.CELO | SupportedChainId.CELO_ALFAJORES {
   return chainId === SupportedChainId.CELO_ALFAJORES || chainId === SupportedChainId.CELO
 }
+
+export function isScroll(chainId: number): chainId is SupportedChainId.SCROLL_ALPHA {
+  return chainId === SupportedChainId.SCROLL_ALPHA
+}
+
 
 function getCeloNativeCurrency(chainId: number) {
   switch (chainId) {
@@ -528,5 +547,6 @@ export const TOKEN_SHORTHANDS: { [shorthand: string]: { [chainId in SupportedCha
     [SupportedChainId.CELO]: PORTAL_USDC_CELO.address,
     [SupportedChainId.CELO_ALFAJORES]: PORTAL_USDC_CELO.address,
     [SupportedChainId.GOERLI]: USDC_GOERLI.address,
+    [SupportedChainId.SCROLL_ALPHA]: USDC_SCROLL_ALPHA.address,
   },
 }

@@ -23,6 +23,7 @@ export enum SupportedChainId {
   CELO_ALFAJORES = 44787,
 
   BNB = 56,
+  SCROLL_ALPHA = 534353,
 }
 
 export const CHAIN_IDS_TO_NAMES = {
@@ -37,6 +38,7 @@ export const CHAIN_IDS_TO_NAMES = {
   [SupportedChainId.OPTIMISM]: 'optimism',
   [SupportedChainId.OPTIMISM_GOERLI]: 'optimism_goerli',
   [SupportedChainId.BNB]: 'bnb',
+  [SupportedChainId.SCROLL_ALPHA]: 'scroll_alpha',
 }
 
 /**
@@ -75,6 +77,7 @@ export const TESTNET_CHAIN_IDS = [
   SupportedChainId.POLYGON_MUMBAI,
   SupportedChainId.ARBITRUM_GOERLI,
   SupportedChainId.OPTIMISM_GOERLI,
+  SupportedChainId.SCROLL_ALPHA,
 ] as const
 
 export type SupportedTestnetChainId = typeof TESTNET_CHAIN_IDS[number]
@@ -103,6 +106,7 @@ export const L2_CHAIN_IDS = [
   SupportedChainId.ARBITRUM_GOERLI,
   SupportedChainId.OPTIMISM,
   SupportedChainId.OPTIMISM_GOERLI,
+  SupportedChainId.SCROLL_ALPHA,
 ] as const
 
 export type SupportedL2ChainId = typeof L2_CHAIN_IDS[number]
