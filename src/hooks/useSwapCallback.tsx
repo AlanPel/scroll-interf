@@ -59,23 +59,23 @@ export function useSwapCallback(
           response,
           trade.tradeType === TradeType.EXACT_INPUT
             ? {
-              type: TransactionType.SWAP,
-              tradeType: TradeType.EXACT_INPUT,
-              inputCurrencyId: currencyId(trade.inputAmount.currency),
-              inputCurrencyAmountRaw: trade.inputAmount.quotient.toString(),
-              expectedOutputCurrencyAmountRaw: trade.outputAmount.quotient.toString(),
-              outputCurrencyId: currencyId(trade.outputAmount.currency),
-              minimumOutputCurrencyAmountRaw: trade.minimumAmountOut(allowedSlippage).quotient.toString(),
-            }
+                type: TransactionType.SWAP,
+                tradeType: TradeType.EXACT_INPUT,
+                inputCurrencyId: currencyId(trade.inputAmount.currency),
+                inputCurrencyAmountRaw: trade.inputAmount.quotient.toString(),
+                expectedOutputCurrencyAmountRaw: trade.outputAmount.quotient.toString(),
+                outputCurrencyId: currencyId(trade.outputAmount.currency),
+                minimumOutputCurrencyAmountRaw: trade.minimumAmountOut(allowedSlippage).quotient.toString(),
+              }
             : {
-              type: TransactionType.SWAP,
-              tradeType: TradeType.EXACT_OUTPUT,
-              inputCurrencyId: currencyId(trade.inputAmount.currency),
-              maximumInputCurrencyAmountRaw: trade.maximumAmountIn(allowedSlippage).quotient.toString(),
-              outputCurrencyId: currencyId(trade.outputAmount.currency),
-              outputCurrencyAmountRaw: trade.outputAmount.quotient.toString(),
-              expectedInputCurrencyAmountRaw: trade.inputAmount.quotient.toString(),
-            }
+                type: TransactionType.SWAP,
+                tradeType: TradeType.EXACT_OUTPUT,
+                inputCurrencyId: currencyId(trade.inputAmount.currency),
+                maximumInputCurrencyAmountRaw: trade.maximumAmountIn(allowedSlippage).quotient.toString(),
+                outputCurrencyId: currencyId(trade.outputAmount.currency),
+                outputCurrencyAmountRaw: trade.outputAmount.quotient.toString(),
+                expectedInputCurrencyAmountRaw: trade.inputAmount.quotient.toString(),
+              }
         )
         return response.hash
       })
