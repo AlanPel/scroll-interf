@@ -16,7 +16,7 @@ import useENS from '../../hooks/useENS'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
 import { isAddress } from '../../utils'
 import { useCurrencyBalances } from '../connection/hooks'
-import { AppState } from '../types'
+import { AppState } from '../index'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
 import { SwapState } from './reducer'
 
@@ -269,7 +269,9 @@ export function useDefaultsFromURLSearch(): SwapState {
         recipient: parsedSwapState.recipient,
       })
     )
-  }, [dispatch, chainId, parsedSwapState])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, chainId])
 
   return parsedSwapState
 }
